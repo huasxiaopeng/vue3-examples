@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性与methods 区别</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+<div id="app">
+    <!-- 定义methods方法多次调用，每次都会执行一次方法。 -->
+    <h3>--定义methods方法多次调用，每次都会执行一次方法。--</h3>
+    <h2>{{getFullName()}}</h2>
+    <h2>{{getFullName()}}</h2>
+    <h2>{{getFullName()}}</h2>
+
+    <!-- 通过computed计算属性调用，只会在第一次赋值给属性时候调用一次方法。
+    后面直接使用属性的值，不在执行方法。只有更新值的时候才会调用方法 -->
+    <h3>--通过computed计算属性调用，只会在第一次赋值给属性时候调用一次方法--。</h3>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+    <h2>{{fullName}}</h2>
+</div>
+
+<body>
+<script>
+    const  App={
+        data(){
+            return{
+                firstName :'我爱',
+                    lastName :'我家'
+            }
+        },methods:{
+            getFullName:function (){
+                console.log('getFullName');
+                return this.firstName + ' ' + this.lastName
+            }
+        },
+        computed:{
+            fullName:function (){
+                console.log('fullName');
+              return this.firstName+""+this.lastName
+            }
+        }
+    }
+    Vue.createApp(App).mount("#app")
+
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>遍历数组</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<div id="app">
+  <Ul>
+      <!--1.在遍历的过程中,没有使用索引值(下标值)-->
+      <li v-for="item in items">{{item}}</li>
+  </Ul>
+    <ul>
+        <!--2.在遍历的过程中, 获取索引值-->
+        <li v-for="(item,index) in items">
+            {{index}}---{{item}}
+        </li>
+    </ul>
+</div>
+<body>
+<script>
+    const  App={
+        data(){
+            return{
+               items:['姜子牙','哪吒','孙悟空','天棚']
+            }
+        }
+    }
+    Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

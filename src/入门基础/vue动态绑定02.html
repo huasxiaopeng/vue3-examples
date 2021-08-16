@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue 动态绑定demo </title>
+    <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<!--在开发页面展示内容过程中，不仅仅是内容需要动态绑定，我们的属性也需要动态绑定，-->
+<!--例如在不同的页面中显示的颜色背景、动态图片地址的更新都是需要动态绑定-->
+<!--，这样当数据更新后，我们就不需要修改代码来更新页面的展示样式了-->
+<div id="cloak" v-cloak>
+    <!-- 使用v-bind指令动态绑定属性值，当data中的imgURL和aHref 数据改变时候，div展示层将自动改变，无需修改代码 -->
+    <img v-bind:src="imgURL" alt="">
+    <a v-bind:href="aHref">百度一下</a>
+<!--    上面的两个进行简化操作-->
+    <img :src="imgURL" alt="动漫">
+    <a :href="aHref">百度一下</a>
+</div>
+<body>
+<script>
+    const Counter={
+        data(){
+            return {
+                imgURL: 'http://www.gov.cn/fuwu/2021-04/07/content_5598150.htm',
+                aHref:'http://www.baidu.com'
+            }
+        }
+    }
+    Vue.createApp(Counter).mount("#cloak")
+
+</script>
+</body>
+</html>

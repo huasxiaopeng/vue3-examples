@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue 动态绑定demo  class</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+<!--在开发页面展示内容过程中，不仅仅是内容需要动态绑定，我们的属性也需要动态绑定，-->
+<!--例如在不同的页面中显示的颜色背景、动态图片地址的更新都是需要动态绑定-->
+<!--，这样当数据更新后，我们就不需要修改代码来更新页面的展示样式了-->
+<div id="cloak" v-cloak>
+    <!-- v-bind绑定class对象语法 -->
+    <!--<h2 v-bind:class="{key1: value1, key2: value2}">{{message}}</h2>-->
+    <!--<h2 v-bind:class="{类名1: true, 类名2: boolean}">{{message}}</h2>-->
+
+<!--    实际demo-->
+    <h2 v-bind:class="{active:isActive,line: isLine}">{{message}}</h2>
+
+    <!-- 上面v-bind绑定class对象的缺点是不够简洁，在大括号里需要些许多个类名。可以将对象的内容放到方法中，这里接收方法返回的数据就简洁了。 -->
+    <h2 v-bind:class="getClasses()">{{message}}</h2>
+
+    <!-- 当有多个class属性时候，可以将固定的class放在v-bind外面，变动的class使用v-bind绑定实现两种类型class共存 -->
+    <h2 class="topic" v-bind:class="getClasses()">{{message}}</h2>
+
+    <!-- class属性绑定事件，触发class名称为active的属性是否显示红色 -->
+    <button v-on:click="btnClick()">按钮</button>
+</div>
+<body>
+<script>
+    const Counter={
+        data(){
+            return {
+                message: '你好vue',
+                isActive: true,
+                isLine: true
+            }
+        },
+        methods:{
+            btnClick(){
+                this.isActive!=this.isActive
+            },
+            getClasses(){
+                return {active:this.isActive,Line:this.isLine}
+            }
+
+        }
+    }
+
+    Vue.createApp(Counter).mount("#cloak")
+
+</script>
+</body>
+</html>

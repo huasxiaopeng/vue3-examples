@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue条件判断</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<div id="app">
+   <h2 v-if="isShow">{{message}}</h2>
+</div>
+<div id="app2">
+    <h2 v-if="isShow">{{message}}</h2>
+    <h2 v-else="isShow">
+        isShow为false时, 显示我
+    </h2>
+
+</div>
+<body>
+<script>
+
+    const  App={
+        data(){
+            return{
+                message :'if...',
+                isShow:  true
+                // isShow:  false
+            }
+        }
+    }
+    Vue.createApp(App).mount("#app")
+    Vue.createApp(App).mount("#app2")
+</script>
+</body>
+</html>

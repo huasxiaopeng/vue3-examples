@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本的表单</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .demo {
+            font-family: sans-serif;
+            border: 1px solid #eee;
+            border-radius: 2px;
+            padding: 20px 30px;
+            margin-top: 1em;
+            margin-bottom: 40px;
+            user-select: none;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<!--单行文本-->
+<div id="v-model-basic" class="demo">
+    <input v-model="msg" placeholder="edit me">
+    <p>message is {{msg}}</p>
+</div>
+<!--多行文本-->
+<div id="v-model-textarea" class="demo">
+    <span>Multiline message is:</span>
+    <p style="white-space: pre-line;">{{ message }}</p>
+    <br/>
+    <textarea v-model="message" placeholder="add multiple lines">
+    </textarea>
+</div>
+<body>
+<script>
+    const  App={
+        data(){
+            return{
+              msg: ''
+            }
+        }
+    }
+    Vue.createApp(App).mount("#v-model-basic")
+
+
+    Vue.createApp({
+      data(){
+        return{
+          message:''
+        }
+      }
+    }).mount("#v-model-textarea")
+    </script>
+</body>
+</html>

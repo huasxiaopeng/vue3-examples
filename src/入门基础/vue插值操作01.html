@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue 插值操作的几种方式 </title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<div id="app">
+    <h2>{{message}}</h2>
+    <!-- mustache语法连接字符串 -->
+    <h2>{{message}},HelloWorld!!</h2>
+    <!-- mustache表达式 -->
+    <h2>{{firstName + lastName}}</h2>
+    <h2>{{firstName +' '+lastName}}</h2>
+    <h2>{{firstName}} + {{lastName}}</h2>
+    <h2>{{counter *2}}</h2>
+
+    <!--有些情况我们不想数据进行变化-->
+    <h2 v-once>{{message}}  </h2>
+
+
+<!-- 直接输出html,而不是输出的变量，防止html 变成字符串输出-->
+    <h2>{{url}}</h2>
+    <h2 v-html="url"></h2>
+
+
+<!--    直接显示原始内容，不需要最新的内容-->
+    <h2>{{mg}}</h2>
+    <h2 v-pre>{{mg}}</h2>
+</div>
+<!--    在vue解析之前，我们浏览器可能会直接显然出未编译的Mustache标签,在vue解析之后展示Mustache内的数据。-->
+<!--    这样的展示效果是不能接受的，这个时候我们可以用v-cloak来解决-->
+<div id="cloak" v-cloak>
+    <h2>{{mq}}</h2>
+</div>
+<body>
+<script>
+    const Counter={
+        data(){
+            return {
+                message: '你好vue',
+                firstName: 'lk',
+                lastName: 'tbz',
+                counter: 100,
+                url:'<a href="http://www.baidu.com">百度一下</a>',
+                mg:'是否是原始内筒'
+            }
+        }
+    }
+    //创建绑定关系
+    Vue.createApp(Counter).mount("#app")
+
+    // 设置一个1秒后就显示的内容
+    setTimeout(function (){
+     Vue.createApp({
+         data() {
+             return {
+                 mq:'数据加载完毕就显示'
+             }
+         }
+     }).mount("#cloak")
+    },1000)
+</script>
+</body>
+</html>

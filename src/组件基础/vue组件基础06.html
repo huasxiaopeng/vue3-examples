@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试组件访问Vue实例数据</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<div id="app">
+    <cpn></cpn>
+</div>
+
+<!-- 测试组件中能不能直接访问Vue实例中的data，结果是报错不能访问Vue实例中的data -->
+<!-- 1.定义组件模板 -->
+<template id="cpn">
+    <div>
+        <!-- 3.访问Vue实例中的数据-->
+        <h2>{{message}}</h2>
+        <p>我是内容</p>
+    </div>
+</template>
+
+
+<body>
+<script>
+   var sa=Vue.createApp({
+
+   })
+    sa.component('cpn',{
+       template: `#cpn`
+    })
+   sa.mount("#app")
+    </script>
+</body>
+</html>

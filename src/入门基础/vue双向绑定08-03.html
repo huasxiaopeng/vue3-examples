@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定之select</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<div id="app">
+    <!--1.选择一个-->
+    <select name="a" v-model="fruita">
+        <option value="苹果">苹果</option>
+        <option value="香蕉">香蕉</option>
+        <option value="菠萝">菠萝</option>
+        <option value="鸭梨">鸭梨</option>
+    </select>
+    <h2>您选择的水果是：{{fruita}}</h2>
+
+    <!--2.选择多个-->
+    <select name="b" v-model="fruitb" multiple>
+        <option value="苹果">苹果</option>
+        <option value="香蕉">香蕉</option>
+        <option value="菠萝">菠萝</option>
+        <option value="鸭梨">鸭梨</option>
+    </select>
+    <h2>您选择的水果是：{{fruitb}}</h2>
+
+</div>
+<body>
+<script>
+    const  App={
+        data(){
+            return{
+                fruita: '苹果',
+                fruitb: []
+            }
+        }
+    }
+    Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

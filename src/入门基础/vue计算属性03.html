@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue 动态绑定demo  class</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+<!--当我们展示的数据需要经过对数据做运算处理后再展示，就需要使用到计算属性帮我们来处理数据。-->
+<!--1.在model层创建computed对象计算数据，在该对象中创建方法，由方法来完成数据处理的任务，然后将返回的结果赋值给属性。-->
+<!--2.在view层引用赋值后的属性就可以展示处理后的数据。-->
+<!--3.下面的例子就是通过computed对数据进行处理，将firstName和lastName两个数据连接到一起，进行展示。-->
+<div id="app">
+    <!-- 普通写法，没有使用计算属性书写比较繁琐不够简洁 -->
+    <h2>{{firstName}} {{lastName}}</h2>
+
+    <!-- 计算属性写法:将需要整合的数据放到model层的computed计算属性中处理，这里直接引用计算属性的结果 -->
+    <h2>{{fullName}}</h2>
+</div>
+
+<!--复杂操作-->
+<div id ="price">
+    <!-- 通过计算属性计算所有书的总价 -->
+    <h2>图书总价：{{totalPrice}}</h2>
+</div>
+<body>
+<script>
+    // import Vue from "vue";
+    // const app = new Vue({
+    //     el:"#app",
+    //     data:{
+    //         firstName:'我爱',
+    //         lastName:'我家'
+    //     }
+    //     // 计算属性，需要整合的数据都在函数中做处理，然后赋值给一个属性。
+    //     ,computed:{
+    //         fullName:function(){
+    //             return this.firstName+""+this.lastName
+    //         }
+    //     }
+    // }) vue2 不能用，现在改成vue3
+
+    const  App={
+        data(){
+            return{
+                firstName :'我爱',
+                    lastName :'我家'
+            }
+        },
+        computed:{
+            fullName:function (){
+              return this.firstName+""+this.lastName
+            }
+        }
+    }
+    Vue.createApp(App).mount("#app")
+
+
+    const Price={
+        data(){
+            return{
+                books: [
+                    {id: '01', name: '论语', price: 11},
+                    {id: '02,', name: '大学', price: 12},
+                    {id: '03', name: '中庸', price: 13},
+                    {id: '04', name: '孟子', price: 13},
+
+                ]
+            }
+        }
+        ,computed:{
+            totalPrice:function (){
+            let result=0;
+                for (let i = 0; i <this.books.length ; i++) {
+                    result+=this.books[i].price
+                }
+                return result
+
+            }
+        }
+    }
+    Vue.createApp(Price).mount("#price")
+</script>
+</body>
+</html>

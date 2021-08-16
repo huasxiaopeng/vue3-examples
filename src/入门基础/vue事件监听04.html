@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue事件监听</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<div id="app">
+    <h2>{{counter}}</h2>
+    <!-- v-on基本使用：绑定click事件直接操作属性 -->
+    <button v-on:click="counter++">+</button>
+    <button v-on:click="counter--">-</button>
+    <h3>-----美丽的分割线---------------</h3>
+    <h3>-----美丽的分割线---------------</h3>
+    <br>
+    <!-- 优化上面v-on可以将click事件指向一个在methods中定义的函数 -->
+    <button v-on:click="increment">+</button>
+    <button v-on:click="decrement">-</button>
+
+    <h3>-----美丽的分割线---------------</h3>
+    <h3>-----美丽的分割线---------------</h3>
+    <br>
+    <!-- v-on语法糖写法:用@ 代替v-on -->
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+</div>
+
+<body>
+<script>
+
+    const  App={
+        data(){
+            return{
+                counter :0
+            }
+        },methods:{
+            increment(){
+                this.counter++;
+            },
+            decrement(){
+                this.counter--;
+            }
+        }
+    }
+    Vue.createApp(App).mount("#app")
+
+</script>
+</body>
+</html>

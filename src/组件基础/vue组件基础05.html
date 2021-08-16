@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态绑定</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<div id="app">
+    <site-info
+            v-for="site in sites"
+            :id="site.id"
+            :title="site.title"
+    ></site-info>
+</div>
+
+<body>
+<script>
+const  site={
+    data() {
+        return {
+            sites: [
+                { id: 1, title: 'Google' },
+                { id: 2, title: 'Runoob' },
+                { id: 3, title: 'Taobao' }
+            ]
+        }
+    }
+}
+
+    // 创建一个全局组件
+  const apps= Vue.createApp(site)
+    apps.component('site-info',{
+        props:['id','title'],
+        template:`<h4>{{ id }} - {{ title }}</h4>`
+    })
+    apps.mount('#app')
+    </script>
+</body>
+</html>

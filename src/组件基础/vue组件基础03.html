@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局部组件</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<div id="app">
+    <run-a></run-a>
+</div>
+
+<body>
+<script>
+    var rnna={
+        template:'<h1>自定义组件!</h1>'
+    }
+
+    // 创建一个 Vue 应用
+  const apps= Vue.createApp({
+      components:{
+          'run-a':rnna
+      }
+  })
+    apps.mount('#app')
+    </script>
+</body>
+</html>

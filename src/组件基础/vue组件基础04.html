@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子父组件之间的传递</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<div id="app">
+    <site-name title="Google"></site-name>
+    <site-name title="Runoob"></site-name>
+    <site-name title="Taobao"></site-name>
+</div>
+
+<body>
+<script>
+
+
+    // 创建一个全局组件
+  const apps= Vue.createApp({})
+    apps.component('site-name',{
+        props:['title'],
+        template:`<h3>{{title}}</h3>`
+    })
+    apps.mount('#app')
+    </script>
+</body>
+</html>

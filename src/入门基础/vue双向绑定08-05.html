@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定之model 表单内的内容可以通过$event 传值过来，使用回调函数的参数event.target.value来获取值</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<div id="app">
+  <input type="text" :value="msg" @input="changevalue($event)">
+    <div>{{msg}}</div>
+</div>
+<body>
+<script>
+    const  App={
+        data(){
+            return{
+              msg: 'hello world'
+            }
+        },
+      methods:{
+          changevalue(e){
+                this.msg=e.target.value
+          }
+      },
+      computed:{
+
+      }
+    }
+    Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>

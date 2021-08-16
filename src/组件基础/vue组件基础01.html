@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件基础01</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<!--组件化开发思想：-->
+<!--如果我们将一个页面中所有的处理逻辑全部放在一起，处理起来就会变得非常复杂，
+而且不利于后续的管理以及扩展。-->
+<!--但如果，我们讲一个页面拆分成一个个小的功能块，每个功能块完成属于自己这部分独立的功能，
+那么之后整个页面的管理和维护就变得非常容易了。-->
+<!--每个小功能快就是一个单独的组件-->
+
+
+<div id="app">
+<!--    使用组件-->
+    <my-cpn></my-cpn>
+</div>
+<body>
+<script>
+    const  App={
+        data(){
+            return{
+                message: '你好VUE'
+            }
+        }
+    }
+    // 创建一个 Vue 应用
+  const apps= Vue.createApp({})
+
+    // 2.定义一个组件
+    apps.component('my-cpn',{
+        template:
+            `<div>
+        <h2>我是标题</h2>
+        <p>我是内容, 哈哈哈哈</p>
+        <p>我是内容, 呵呵呵呵</p>
+         </div>
+        `
+    })
+    apps.mount('#app')
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双向绑定之checkbox</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<div id="app">
+    <!--1.checkbox单选框-->
+    <label for="agree">
+        <!-- 通过点击单选框是否同意协议改变下一步是否可点击状态 -->
+        <input type="checkbox" id="agree" v-model="isAgree">同意协议
+    </label>
+    <h2>您选择的是：{{isAgree}}</h2>
+    <button :disabled="!isAgree">下一步</button>
+    <!--2.v-model第一种方式实现checkbox多选框：将点击内容添加到hobbies数组，这种方式缺点value数据是写死的不是由服务器返回的选项-->
+
+    <input type="checkbox" value="篮球"  v-model="hobbies">篮球
+    <input type="checkbox" value="足球" v-model="hobbies">足球
+    <input type="checkbox" value="乒乓球" v-model="hobbies">乒乓球
+    <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+    <h2>您的爱好是：{{hobbies}}</h2>
+
+    <!--3 v-model第二种方式实现checkbox多选框 ：通过动态绑定属性，在页面显示的选项是由服务器返回的数据；然后将选择的内容通过v-model传给hobbies数组-->
+    <!-- ①遍历服务器返回的可选项数据 -->
+    <label v-for="item in originHobbies" for="item">
+        <!-- ②:value="item" 动态绑定已选择的选项；  v-model="hobbies"：将选择的内容存到hobbies数组中   -->
+        <input type="checkbox" :value="item" id="item" v-model="hobbies">{{item}}
+    </label>
+    <h2>您的爱好是：{{hobbies}}</h2>
+
+</div>
+<body>
+<script>
+    const  App={
+        data(){
+            return{
+                message: '你好VUE',
+                isAgree: false,
+                hobbies: [],
+                originHobbies: ['篮球', '足球', '乒乓球', '羽毛球', '台球', '高尔夫球']
+            }
+        }
+    }
+    Vue.createApp(App).mount("#app")
+    </script>
+</body>
+</html>
